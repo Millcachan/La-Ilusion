@@ -8,12 +8,14 @@
 
 #ifndef OBJECT_PLATFORM_H
     #define OBJECT_PLATFORM_H
+    #include <stdbool.h>
     #include <SFML/Graphics.h>
 
 
 struct platform_s {
     sfSprite *sprite;
     float accel_x;
+    bool is_active;
 };
 
 
