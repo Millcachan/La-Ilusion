@@ -12,6 +12,7 @@
 
 
 sfSprite *load_sprite(const char *path);
+void unload_sprite(sfSprite *sprite);
 
 
 #endif
