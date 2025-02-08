@@ -20,7 +20,11 @@ void change_scene(game_t *game, scene_type_t scene_type)
     if (scene_type == game->scene_type)
         return;  // don't do anything if the scene doesn't change
 
-    // sfMusic_stop(game->current_music);
+    if (game->scene_type != ST_NONE)
+        scenes[game->scene_type].free(game);
+    
+    if (game->current_music)
+        sfMusic_stop(game->current_music);
 
     // free_current_scene(game);
 

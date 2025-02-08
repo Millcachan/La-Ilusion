@@ -13,8 +13,8 @@ static void scale_image_to_window(sfSprite* sprite, sfRenderWindow* window)
 {
     sfVector2u window_size = sfRenderWindow_getSize(window);
     sfVector2u texture_size = sfTexture_getSize(sfSprite_getTexture(sprite));
-    float scale_x = (float)window_size.x / texture_size.x;
-    float scale_y = (float)window_size.y / texture_size.y;
+    float scale_x = (float)window_size.x / (float)texture_size.x;
+    float scale_y = (float)window_size.y / (float)texture_size.y;
     float scale = (scale_x < scale_y) ? scale_x : scale_y;
 
     sfSprite_setScale(sprite, (sfVector2f){scale, scale});
