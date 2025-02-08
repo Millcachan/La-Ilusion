@@ -10,6 +10,7 @@
 #include "game.h"
 #include "macro.h"
 #include "sound.h"
+#include "assets.h"
 
 /**
  * @brief Init the screen and windows options.
@@ -23,7 +24,30 @@ static void init_screen(screen_t *screen)
 
 static musics_t init_musics(void)
 {
-    musics_t musics = { 0 };
+    musics_t musics;
+    const char *files[MUSIC_COUNT] = {
+        "../../assets/musics/menu.ogg",
+        "../../assets/musics/main_music.ogg",
+        "../../assets/musics/start.ogg",
+        "../../assets/musics/jump.ogg",
+        "../../assets/musics/slide.ogg",
+        "../../assets/musics/dead.ogg"
+    };
+    const float default_volumes[MUSIC_COUNT] = {90.0f, 80.0f, 80.0f, 50.0f, 80.0f, 150.0f};
+
+    for (int i = 0; i < MUSIC_COUNT; i++) {
+        musics.music[i] = sfMusic_createFromFile(files[i]);
+        musics.volume[i] = default_volumes[i];
+
+        if (!musics.music[i]) {
+            fprintf(stderr, "Failed to load music: %s\n", files[i]);
+            exit(ERROR);
+        }
+
+        sfMusic_setVolume(musics.music[i], musics.volume[i]);
+    }
+    sfMusic_setLoop(musics.music[MENU], sfTrue);
+    sfMusic_setLoop(musics.music[MAIN_MUSIC], sfTrue);
 
     return musics;
 }
@@ -36,10 +60,8 @@ game_t *init_game(game_t *game)
     init_screen(&game->screen);
     game->clock = CLOCK_CREATE();
     game->musics = init_musics();
-    game->current_music = game->musics.music[0];
+    game->current_music = game->musics.music[MENU];
     change_scene(game, ST_NONE);
-    // sfMusic_setVolume(game->current.music, 80.0f);
-    // sfMusic_setLoop(game->current.music, sfTrue);
-    // sfMusic_play(game->current.music);
+    sfMusic_play(game->current_music);
     return game;
 }
