@@ -8,6 +8,7 @@
 #pragma once
 
 #include "struct.h"
+#include <stdbool.h>
 #include <SFML/Window.h>
 #include <SFML/System.h>
 #include <SFML/Graphics.h>
@@ -21,8 +22,9 @@ typedef enum {
 
 typedef struct player_s {
     sfSprite *pl_sprite;
-    sfRectangleShape *hitbox;
+    sfIntRect *hitbox;
     sfVector2f position;
+    sfVector2f scale;
     player_state_t *pl_state;
     bool jumping;
 } player_t;

@@ -27,6 +27,14 @@ static musics_t init_musics(void)
     return musics;
 }
 
+static player_t init_player(void)
+{
+    player_t player;
+
+    player.pl_sprite = sfSprite_create()
+    sfSprite
+}
+
 /**
  * @brief Initialize the main structure of the game.
  */
