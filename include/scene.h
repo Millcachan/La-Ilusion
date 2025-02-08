@@ -8,7 +8,6 @@
 #ifndef SCENE_H
     #define SCENE_H
     #include "types.h"
-    #include "object/player.h"
     #include <stdlib.h>
     #include <SFML/Window.h>
     #include <SFML/System.h>
@@ -37,9 +36,13 @@ struct scene_s {
 };
 
 struct scene_ingame_s {
+    // Player:
+    player_t *player;
+    sfTexture **player_textures;
+
+    // Background:
     sfSprite **background;
     sfTexture **background_texture;
-    player_t *player;
 };
 
 

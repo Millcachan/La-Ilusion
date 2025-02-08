@@ -2,11 +2,13 @@
 ** EPITECH PROJECT, 2024
 ** La-Ilusi-n
 ** File description:
-** update_menu.c
+** Implementation for
+** update_ingame
 */
 
 #include "game.h"
-#include "macro.h"
+#include "object/player.h"
+
 
 void update_ingame(game_t *game)
 {
@@ -20,5 +22,5 @@ void update_ingame(game_t *game)
         rect.left += (int)(game->speed) * (i * 2);
         sfSprite_setTextureRect(data->background[i], rect);
     }
-    player_update(data->player);
+    player_update(data->player, data->player_textures);
 }

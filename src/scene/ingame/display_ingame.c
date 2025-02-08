@@ -7,6 +7,8 @@
 
 #include "game.h"
 #include "macro.h"
+#include "object/player.h"
+
 
 void display_ingame(game_t *game)
 {
@@ -15,9 +17,7 @@ void display_ingame(game_t *game)
 
     scene_ingame_t *data = game->scene->data;
 
-    for (int i = 0; data->background[i]; i++) {
+    for (int i = 0; data->background[i]; i++)
         SPRITE_DRAW(game->screen.window, data->background[i], NULL);
-        SPRITE_DRAW(game->screen.window, data->player->sprite, NULL);
-    }
-
+    player_display(game, data->player);
 }

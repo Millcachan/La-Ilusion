@@ -5,41 +5,72 @@
 ** load_menu.c
 */
 
-#include "assets.h"
 #include "game.h"
 #include "macro.h"
+#include "object/player.h"
 #include <string.h>
+
 
 static void scale_image_to_window(sfSprite* sprite, sfRenderWindow* window)
 {
     sfVector2u window_size = sfRenderWindow_getSize(window);
     sfVector2u texture_size = sfTexture_getSize(sfSprite_getTexture(sprite));
+
+    // Compute the scale needed to cover the window with the background:
     float scale_x = (float)window_size.x / (float)texture_size.x;
     float scale_y = (float)window_size.y / (float)texture_size.y;
-    float scale = (scale_x < scale_y) ? scale_x : scale_y;
 
+    // Scale the sprite to cover the whole bg
+    float scale = (scale_x > scale_y) ? scale_x : scale_y;
     sfSprite_setScale(sprite, (sfVector2f){scale, scale});
+}
+
+/**
+ * @brief create a texture from a file, and
+ * return it if no error was encountered.
+ * Exit with an error message otherwise.
+ */
+static sfTexture *load_texture(const char *path)
+{
+    sfTexture *texture = sfTexture_createFromFile(path, NULL);
+    if (texture == NULL) {
+        fprintf(stderr, "Error: Failed loading texture at %s\n", path);
+        exit(ERROR);
+    }
+
+    return texture;
+}
+
+static sfTexture *load_background_texture(int index)
+{
+    // Dynamically retrieve path to background texture:
+    char file_path[] = "assets/background/layer_%.png";
+    file_path[24] = '0' + (char)index;  // replace '%' with the index; the cast is safe since index € [0; 4]
+
+    sfTexture *texture = load_texture(file_path);
+    sfTexture_setRepeated(texture, sfTrue);
+
+    return texture;
 }
 
 void load_ingame(game_t *game)
 {
     if (!game)
         return;
-    if (!game->scene) {
+
+    if (!game->scene)
         game->scene = malloc(sizeof(scene_t));
-    }
+
     game->scene->data = malloc(sizeof(scene_ingame_t));
 
     scene_ingame_t *data = game->scene->data;
-    data->background = malloc(sizeof(sfSprite *) * 6);
-    data->background_texture = malloc(sizeof(sfTexture *) * 6);
-    data->player = malloc(sizeof(player_t *));
+    data->background = malloc(6 * sizeof(sfSprite *));
+    data->background_texture = malloc(6 * sizeof(sfTexture *));
+    data->player_textures = malloc(3 * sizeof(sfTexture *));
 
+    // Background Setup:
     for (int i = 0; i < 5; i++) {
-        char filePath[256];
-        snprintf(filePath, sizeof(filePath), "assets/background/layer_%d.png", i);
-        data->background_texture[i] = sfTexture_createFromFile(filePath, NULL);
-        sfTexture_setRepeated(data->background_texture[i], sfTrue);
+        data->background_texture[i] = load_background_texture(i);
         data->background[i] = sfSprite_create();
         sfSprite_setTexture(data->background[i], data->background_texture[i], sfTrue);
         scale_image_to_window(data->background[i], game->screen.window);
@@ -47,11 +78,11 @@ void load_ingame(game_t *game)
     data->background[5] = NULL;
     data->background_texture[5] = NULL;
 
-    data->player->state = PS_NORMAL;
-    data->player->sprite = load_sprite("assets/player/player.png");
-    data->player->accel_y = 0;
-    sfSprite_setPosition(data->player->sprite, (sfVector2f){
-        0.0f, WINDOW_HEIGHT / 2.f
-    });
-    sfSprite_setTextureRect(data->player->sprite, (sfIntRect){0, 0, 32, 32});
+    // Player Setup:
+    data->player_textures[PS_NORMAL] = load_texture("assets/player/player.png");
+    data->player_textures[PS_JUMP] = load_texture("assets/player/jump.png");
+    data->player_textures[PS_SLIDE] = load_texture("assets/player/slide.png");
+
+    data->player = player_create();
+    player_update_texture(data->player, data->player_textures);
 }
