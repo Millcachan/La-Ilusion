@@ -53,6 +53,8 @@ struct game_s {
     musics_t musics;
     sfMusic *current_music;
 
+    sfMusic *current_sound;
+
     // Game Lifetime:
     screen_t screen;
     sfClock *clock;

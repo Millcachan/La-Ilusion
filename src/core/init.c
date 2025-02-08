@@ -59,10 +59,8 @@ game_t *init_game(game_t *game)
     init_screen(&game->screen);
     game->clock = CLOCK_CREATE();
     game->musics = init_musics();
-    game->current_music = game->musics.music[0];
+    game->current_music = game->musics.music[MENU];
     change_scene(game, ST_NONE);
-    // sfMusic_setVolume(game->current.music, 80.0f);
-    // sfMusic_setLoop(game->current.music, sfTrue);
-    // sfMusic_play(game->current.music);
+    sfMusic_play(game->current_music);
     return game;
 }
