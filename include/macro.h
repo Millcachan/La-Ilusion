@@ -18,6 +18,10 @@
     #define SUCCESS 0
     #define TRANSPARENT 0
 
+    // Window Specification
+    #define WINDOW_WIDTH 711
+    #define WINDOW_HEIGHT 400
+
     // Defines for window
     #define CLEAR sfRenderWindow_clear
     #define CLOSE sfRenderWindow_close

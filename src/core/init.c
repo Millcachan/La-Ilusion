@@ -10,14 +10,14 @@
 #include "game.h"
 #include "macro.h"
 #include "sound.h"
-#include "assets.h"
+
 
 /**
  * @brief Init the screen and windows options.
  */
 static void init_screen(screen_t *screen)
 {
-    screen->mode = (sfVideoMode){800, 600, 32};
+    screen->mode = (sfVideoMode){WINDOW_WIDTH, WINDOW_HEIGHT, 32};
     screen->window = WINDOW_CREATE(screen->mode, "La Ilusion", sfClose, NULL);
     WINDOW_FRAMELIMIT(screen->window, 144);
 }
@@ -26,12 +26,12 @@ static musics_t init_musics(void)
 {
     musics_t musics;
     const char *files[MUSIC_COUNT] = {
-        "../../assets/musics/menu.ogg",
-        "../../assets/musics/main_music.ogg",
-        "../../assets/musics/start.ogg",
-        "../../assets/musics/jump.ogg",
-        "../../assets/musics/slide.ogg",
-        "../../assets/musics/dead.ogg"
+        "assets/musics/menu.ogg",
+        "assets/musics/main_music.ogg",
+        "assets/musics/start.ogg",
+        "assets/musics/jump.ogg",
+        "assets/musics/slide.ogg",
+        "assets/musics/dead.ogg"
     };
     const float default_volumes[MUSIC_COUNT] = {90.0f, 80.0f, 80.0f, 50.0f, 80.0f, 150.0f};
 
@@ -60,6 +60,7 @@ game_t *init_game(game_t *game)
     init_screen(&game->screen);
     game->clock = CLOCK_CREATE();
     game->musics = init_musics();
+    game->speed = 1;
     game->current_music = game->musics.music[MENU];
     change_scene(game, ST_NONE);
     sfMusic_play(game->current_music);

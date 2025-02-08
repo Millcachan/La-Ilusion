@@ -5,6 +5,8 @@
 ## Makefile
 ##
 
+.SILENT:
+
 NAME    =   LaIlusion
 
 CPROG   =   $(wildcard src/*.c src/*/*.c src/*/*/*.c)
