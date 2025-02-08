@@ -7,7 +7,7 @@
 
 #ifndef SCENE_H
     #define SCENE_H
-    #include <types.h>
+    #include "types.h"
     #include <stdlib.h>
     #include <SFML/Window.h>
     #include <SFML/System.h>

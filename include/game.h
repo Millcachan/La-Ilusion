@@ -8,8 +8,8 @@
 
 #ifndef GAME_H
     #define GAME_H
-    #include <types.h>
-    #include <scene.h>
+    #include "types.h"
+    #include "scene.h"
     #include <stdio.h>
     #include <stdlib.h>
     #include <SFML/Window.h>
@@ -17,6 +17,7 @@
     #include <SFML/Graphics.h>
     #include <SFML/Audio.h>
 
+    #define MUSIC_COUNT 6
 
 /**
  * @brief Structure screen, containing screen
@@ -35,8 +36,8 @@ struct screen_s {
  * tracks, as well as their associated volumes
  */
 struct musics_s {
-    sfMusic *music[1];
-    float volume[1];
+    sfMusic *music[MUSIC_COUNT];
+    float volume[MUSIC_COUNT];
 };
 
 
@@ -51,6 +52,8 @@ struct game_s {
     // Music:
     musics_t musics;
     sfMusic *current_music;
+
+    sfMusic *current_sound;
 
     // Game Lifetime:
     screen_t screen;
