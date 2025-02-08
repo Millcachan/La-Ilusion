@@ -56,6 +56,7 @@ struct game_s {
     screen_t screen;
     sfClock *clock;
     unsigned int nb_frame;
+    unsigned int speed;
 };
 
 
