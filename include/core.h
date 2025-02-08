@@ -7,12 +7,12 @@
 
 #pragma once
 
-#include "struct.h"
+#include <game.h>
 #include <SFML/Window.h>
 #include <SFML/System.h>
 #include <SFML/Graphics.h>
 
-int game(void);
+int game_mainloop(void);
 void update(game_t *game);
 void display(game_t *game);
 void free_game(game_t *game);

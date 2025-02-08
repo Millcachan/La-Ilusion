@@ -11,9 +11,9 @@ CPROG   =   $(wildcard src/*.c src/*/*.c src/*/*/*.c)
 
 OPROG	=	$(CPROG:.c=.o)
 
-IFLAGS	=	-I./include/ -I./include/scene -I./include/usage
+IFLAGS	=	-I./include
 
-WFLAGS	=	-g -Wall -Wconversion -Wpedantic -O3 \
+WFLAGS	=	-Wall -Wconversion -Wpedantic -O3 \
             -Wsign-compare -Wtype-limits -Walloc-zero \
             -Wmissing-field-initializers -Wunused-variable \
             -Wcast-qual -Wduplicated-branches \
@@ -37,7 +37,6 @@ fclean: clean
 re: fclean all
 
 debug: CFLAGS += -g
-
 debug: re
 	printf "[%s] — Debug mode enabled\n" $(NAME)
 

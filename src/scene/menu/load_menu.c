@@ -5,7 +5,7 @@
 ** load_menu.c
 */
 
-#include "struct.h"
+#include "game.h"
 #include "macro.h"
 #include <string.h>
 

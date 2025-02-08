@@ -5,7 +5,7 @@
 ** update_menu.c
 */
 
-#include "struct.h"
+#include "game.h"
 #include "macro.h"
 
 void update_menu(game_t *game)

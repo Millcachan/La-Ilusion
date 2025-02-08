@@ -1,0 +1,34 @@
+/*
+** EPITECH PROJECT, 2024
+** Project - La Ilusion
+** File description:
+** Header file for types
+** used in the project
+*/
+
+#ifndef TYPES_H
+    #define TYPES_H
+
+
+///////////////////////////////////////////
+//                                       //
+//               Structures              //
+//                                       //
+///////////////////////////////////////////
+
+typedef struct game_s game_t;            // defined in game.h (l.45)
+typedef struct screen_s screen_t;        // defined in game.h (l.24)
+typedef struct musics_s musics_t;        // defined in game.h (l.36)
+typedef struct scene_s scene_t;          // defined in scene.h (l.24)
+
+
+///////////////////////////////////////////
+//                                       //
+//              Type Aliases             //
+//                                       //
+///////////////////////////////////////////
+
+typedef void (*game_fnc_t)(game_t *);
+
+
+#endif

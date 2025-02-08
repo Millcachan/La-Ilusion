@@ -5,7 +5,7 @@
 ** event_menu.c
 */
 
-#include "struct.h"
+#include "game.h"
 #include "core.h"
 #include "macro.h"
 
