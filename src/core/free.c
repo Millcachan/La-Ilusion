@@ -14,7 +14,8 @@
  */
 void free_current_scene(game_t *game)
 {
-    sfMusic_destroy(game->current_music);
+    if (game->scene_type != ST_NONE)
+        scenes[game->scene_type].free(game);
 }
 
 static void free_music(game_t *game)
@@ -29,6 +30,7 @@ static void free_music(game_t *game)
 void free_game(game_t *game)
 {
     CLOCK_DESTROY(game->clock);
+    free_current_scene(game);
     WINDOW_DESTROY(game->screen.window);
     free_music(game);
     // Don't free the value associated to the game ptr (it lives in static memory)

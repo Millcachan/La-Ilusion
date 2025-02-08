@@ -26,8 +26,6 @@ void change_scene(game_t *game, scene_type_t scene_type)
     if (game->current_music)
         sfMusic_stop(game->current_music);
 
-    // free_current_scene(game);
-
     game->scene_type = scene_type;  // Update the game's scene to new scene
 
     if (scene_type != ST_NONE)
