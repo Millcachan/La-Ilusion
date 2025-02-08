@@ -65,9 +65,9 @@ void player_display(game_t *game, player_t *player)
     static unsigned int frame_count = 0;
     static const unsigned int animation_delay = 8;  // TODO: remove this (only present for testing)
 
-    while (frame_count >= animation_delay) {
+    if (frame_count >= animation_delay) {
         increment_animation_frame(player);
-        frame_count -= animation_delay;
+        frame_count = 0;
     }
     sfRenderWindow_drawSprite(game->screen.window, player->sprite, NULL);
     frame_count++;
