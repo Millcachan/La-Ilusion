@@ -1,0 +1,35 @@
+name: test_LaIlusion
+
+on:
+  push:
+    branches: main
+
+jobs:
+
+  check_program_compilation:
+    runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Launch make
+        run: make
+        timeout-minutes: 2
+
+      - name: Launch make fclean
+        run: make fclean
+
+      - name: Launch make re
+        run: make re
+        timeout-minutes: 2
+
+      - name: Launch make clean
+        run: make clean
+
+      - name: Verify executable
+        run: |
+          if [ ! -x "LaIlusion" ]; then
+            echo "Error: LaIlusion is either not found or not executable"
+            exit 1
+          fi
