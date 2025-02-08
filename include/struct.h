@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include "player.h"
 #include "enum.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -43,6 +44,7 @@ typedef struct game_s {
     cur_scene_t current;
     screen_t screen;
     musics_t musics;
+    player_t *player;
     sfClock *clock;
     int nb_frame;
 } game_t;
