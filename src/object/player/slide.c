@@ -5,15 +5,11 @@
 ** slide
 */
 
-#include "core.h"
-#include "game.h"
-#include "scene.h"
-#include "macro.h"
-#include "player.h"
+#include "object/player.h"
 
 
 void player_slide(player_t *player)
 {
-    player->pl_state = PL_SLIDE;
+    player->state = PS_SLIDE;
     // TODO: change the sprite to sliding animation
 }
