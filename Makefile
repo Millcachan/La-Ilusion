@@ -1,34 +1,44 @@
 ##
 ## EPITECH PROJECT, 2024
-## Project - la_ilusion
+## Project - La Ilusion
 ## File description:
-## Makefile used to help
-## and facilitate the compilation
-## of la_ilusion
+## Makefile
 ##
 
-CC = gcc
-CFLAGS =
+NAME    =   LaIlusion
 
-NAME = la_ilusion
+CPROG   =   $(wildcard src/*.c src/*/*.c src/*/*/*.c)
 
-INCLUDE_DIR = include/
+OPROG	=	$(CPROG:.c=.o)
 
-SRC_FILES = main.c								\
+IFLAGS	=	-I./include/ -I./include/scene -I./include/usage
 
-.PHONY = all debug clean fclean re
+WFLAGS	=	-g -Wall -Wconversion -Wpedantic -O3 \
+            -Wsign-compare -Wtype-limits -Walloc-zero \
+            -Wmissing-field-initializers -Wunused-variable \
+            -Wcast-qual -Wduplicated-branches \
+            -Winit-self -Wuninitialized
 
-all: $(NAME)
+CFLAGS  =   $(IFLAGS) $(WFLAGS) $(CSFMLFLAGS)
 
-$(NAME):
-	@$(CC) -o $(NAME) $(CFLAGS) $(SRC_FILES) -I./$(INCLUDE_DIR)
+CSFMLFLAGS	= -lcsfml-window -lcsfml-graphics -lcsfml-system -lcsfml-audio -lm
 
-debug: CFLAGS += -ggdb -Wall -Wextra -Werror
-debug: fclean $(NAME)
+all: $(OPROG)
+	gcc -o $(NAME) $(OPROG) $(CFLAGS)
+	printf "[%s] — Successfully compiled\n" $(NAME)
 
 clean:
+	rm -f $(OPROG)
+	rm -f vgcore.*
 
 fclean: clean
-	@rm -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
+
+debug: CFLAGS += -g
+
+debug: re
+	printf "[%s] — Debug mode enabled\n" $(NAME)
+
+.PHONY: all clean fclean re debug
