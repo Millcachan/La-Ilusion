@@ -62,8 +62,8 @@ static void increment_animation_frame(player_t *player)
  */
 void player_display(game_t *game, player_t *player)
 {
-    static unsigned int frame_count = 0;
-    static const unsigned int animation_delay = 8;  // TODO: remove this (only present for testing)
+    static unsigned int frame_count = 0;  // TODO: switch to a time-dependent counter
+    static const unsigned int animation_delay = 8;
 
     if (frame_count >= animation_delay) {
         increment_animation_frame(player);
