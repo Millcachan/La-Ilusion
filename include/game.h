@@ -6,16 +6,16 @@
 ** game structures
 */
 
-#pragma once
-
-#include <types.h>
-#include <scene.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <SFML/Window.h>
-#include <SFML/System.h>
-#include <SFML/Graphics.h>
-#include <SFML/Audio.h>
+#ifndef GAME_H
+    #define GAME_H
+    #include <types.h>
+    #include <scene.h>
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <SFML/Window.h>
+    #include <SFML/System.h>
+    #include <SFML/Graphics.h>
+    #include <SFML/Audio.h>
 
 
 /**
@@ -57,3 +57,6 @@ struct game_s {
     sfClock *clock;
     unsigned int nb_frame;
 };
+
+
+#endif

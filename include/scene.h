@@ -5,10 +5,10 @@
 ** scene.h
 */
 
-#pragma once
-
-#include <types.h>
-#include <stdlib.h>
+#ifndef SCENE_H
+    #define SCENE_H
+    #include <types.h>
+    #include <stdlib.h>
 
 
 /**
@@ -45,3 +45,6 @@ static const scene_t scenes[] = {
 
 void free_current_scene(game_t *game);
 void change_scene(game_t *game, scene_type_t scene_type);
+
+
+#endif
