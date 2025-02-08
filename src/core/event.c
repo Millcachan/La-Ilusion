@@ -6,8 +6,8 @@
 */
 
 #include "core.h"
-#include "struct.h"
 #include "scene.h"
+#include "game.h"
 #include "macro.h"
 
 /**
@@ -17,12 +17,9 @@ void event_manager(game_t *game)
 {
     if (game->screen.event.type == sfEvtClosed) {
         CLOSE(game->screen.window);
+        return;
     }
-
-    for (int i = 0; scenes[i].scene != NONE; i++) {
-        if (scenes[i].scene == game->scene) {
-            scenes[i].event_manager(game);
-            break;
-        }
-    }
+    if (game->scene_type == ST_NONE)
+        return;
+    scenes[game->scene_type].event_manager(game);
 }

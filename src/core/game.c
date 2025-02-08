@@ -6,7 +6,6 @@
 */
 
 #include "core.h"
-#include "usage.h"
 #include "macro.h"
 #include <unistd.h>
 
@@ -15,25 +14,23 @@
  */
 game_t *get_game(void)
 {
-    static game_t *game = NULL;
+    static game_t game = { 0 };
 
-    if (!game) {
-        game = malloc((size_t)sizeof(game_t));
-    }
-    return game;
+    return &game;
 }
 
 float get_time(game_t *game)
 {
     sfTime time = sfClock_getElapsedTime(game->clock);
 
-    return (float)((double)time.microseconds / 1000000.0);
+    return (float)((double)time.microseconds / 1000000.0f);
 }
+
 
 /**
  * @brief The main loop of the game.
  */
-int game(void)
+int game_mainloop(void)
 {
     game_t *game = init_game(get_game());
     float seconds;
@@ -43,8 +40,9 @@ int game(void)
         while (POLL_EVENT(game->screen.window, &game->screen.event)) {
             event_manager(game);
         }
-        if (seconds > 0.1) {
+        while (seconds > 0.1f) {
             update(game);
+            seconds -= 0.1f;
         }
         display(game);
     }

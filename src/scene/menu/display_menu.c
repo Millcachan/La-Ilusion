@@ -5,7 +5,7 @@
 ** display_menu.c
 */
 
-#include "struct.h"
+#include "game.h"
 #include "macro.h"
 
 void display_menu(game_t *game)

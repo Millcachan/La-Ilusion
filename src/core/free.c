@@ -5,23 +5,22 @@
 ** free.c
 */
 
-#include "struct.h"
 #include "macro.h"
+#include "game.h"
 #include <stdlib.h>
 
 /**
  * @brief Free the current loaded scene.
  */
-void free_current_scene(cur_scene_t *current, game_t *game)
+void free_current_scene(game_t *game)
 {
-    sfMusic_destroy(current->music);
+    sfMusic_destroy(game->current_music);
 }
 
 static void free_music(game_t *game)
 {
-    for (int i = 0; i < 1; i++) {
+    for (int i = 0; i < 1; i++)
         sfMusic_destroy(game->musics.music[i]);
-    }
 }
 
 /**
@@ -32,5 +31,5 @@ void free_game(game_t *game)
     CLOCK_DESTROY(game->clock);
     WINDOW_DESTROY(game->screen.window);
     free_music(game);
-    free(game);
+    // Don't free the value associated to the game ptr (it lives in static memory)
 }

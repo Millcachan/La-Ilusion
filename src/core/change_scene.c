@@ -5,10 +5,9 @@
 ** change_scene.c
 */
 
-#include "enum.h"
-#include "struct.h"
 #include "macro.h"
 #include "scene.h"
+#include "game.h"
 #include "sound.h"
 #include <stdio.h>
 #include <string.h>
@@ -16,17 +15,17 @@
 /**
  * @brief  Call this function wherever to change the current scene.
  */
-void change_scene(game_t *game, enum scene_enum scene)
+void change_scene(game_t *game, scene_type_t scene_type)
 {
-    sfMusic_stop(game->current.music);
-    free_current_scene(&game->current, game);
+    if (scene_type == game->scene_type)
+        return;  // don't do anything if the scene doesn't change
 
-    game->scene = scene;
+    sfMusic_stop(game->current_music);
 
-    for (int i = 0; scenes[i].scene != NONE; i++) {
-        if (scenes[i].scene == game->scene) {
-            scenes[i].load(game);
-            break;
-        }
-    }
+    free_current_scene(game);
+
+    game->scene_type = scene_type;  // Update the game's scene to new scene
+
+    if (scene_type != ST_NONE)
+        scenes[scene_type].load(game);
 }

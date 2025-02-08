@@ -5,9 +5,12 @@
 ** sound.h
 */
 
+#ifndef SOUND_H
+    #define SOUND_H
+    #include "core.h"
 
-#include "core.h"
-
-#pragma once
 
 void change_music(game_t *game, int index);
+
+
+#endif

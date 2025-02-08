@@ -5,9 +5,9 @@
 ** main.c
 */
 
-#include "core.h"
+#include <core.h>
 
 int main(void)
 {
-    return game();
+    return game_mainloop();
 }
