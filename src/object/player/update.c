@@ -8,6 +8,7 @@
 
 #include "object/player.h"
 #include <SFML/Graphics.h>
+#include <stdbool.h>
 
 
 /**
@@ -19,17 +20,17 @@ void player_update(player_t *player, sfTexture **textures)
 {
     sfVector2f position = sfSprite_getPosition(player->sprite);
 
-    // Reset the player's state to normal if sliding
-    if (player->state == PS_SLIDE)
-        player->state = PS_NORMAL;
-
     // Update the player's acceleration
     if (player->state != PS_JUMP && sfKeyboard_isKeyPressed(sfKeySpace))
         player_jump(player, textures);
 
     // Handle sliding
-    if (player->state == PS_NORMAL && sfKeyboard_isKeyPressed(sfKeyC))
-        player_slide(player);
+    bool slide_key_pressed = sfKeyboard_isKeyPressed(sfKeyC);
+
+    if (player->state == PS_NORMAL && slide_key_pressed)
+        player_slide(player, textures);
+    if (player->state == PS_SLIDE && !slide_key_pressed)
+        player_run(player, textures);
 
     // Apply the player's acceleration
     position.y -= player->accel_y;
