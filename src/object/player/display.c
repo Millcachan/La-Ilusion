@@ -23,10 +23,10 @@ static void incr_jump_anim(sfSprite *sprite)
 {
     sfIntRect texture_rect = sfSprite_getTextureRect(sprite);
 
-    if (texture_rect.left == 256)  // stay on last animation frame (i.e. don't repeat the animation)
-        return;
-
-    texture_rect.left += 32;
+    if (texture_rect.left >= 160)
+        texture_rect.left -= 32;
+    else
+        texture_rect.left += 32;
 
     sfSprite_setTextureRect(sprite, texture_rect);
 }
@@ -63,7 +63,7 @@ static void increment_animation_frame(player_t *player)
 void player_display(game_t *game, player_t *player)
 {
     static unsigned int frame_count = 0;
-    static const unsigned int animation_delay = 100;  // TODO: remove this (only present for testing)
+    static const unsigned int animation_delay = 8;  // TODO: remove this (only present for testing)
 
     while (frame_count >= animation_delay) {
         increment_animation_frame(player);

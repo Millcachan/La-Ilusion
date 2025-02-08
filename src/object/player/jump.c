@@ -8,8 +8,9 @@
 #include "object/player.h"
 
 
-void player_jump(player_t *player)
+void player_jump(player_t *player, sfTexture **textures)
 {
     player->accel_y += JUMP_STRENGTH;
     player->state = PS_JUMP;
+    player_update_texture(player, textures);
 }
