@@ -20,8 +20,8 @@
  * @brief Player states
  */
 typedef enum {
-    PS_JUMP,
     PS_NORMAL,
+    PS_JUMP,
     PS_SLIDE,
 } player_state_t;
 
@@ -36,6 +36,7 @@ struct player_s {
 void player_update(player_t *player);
 void player_jump(player_t *player);
 void player_slide(player_t *player);
+void player_display(game_t *game, player_t *player);
 
 
 #endif
