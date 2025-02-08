@@ -10,7 +10,6 @@
     #define GAME_H
     #include "types.h"
     #include "scene.h"
-    #include "player.h"
     #include <stdio.h>
     #include <stdlib.h>
     #include <SFML/Window.h>
@@ -54,7 +53,6 @@ struct game_s {
     sfMusic *current_music;
 
     // Game Lifetime:
-    player_t *player;
     screen_t screen;
     sfClock *clock;
     unsigned int nb_frame;
