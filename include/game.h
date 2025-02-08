@@ -8,8 +8,8 @@
 
 #ifndef GAME_H
     #define GAME_H
-    #include <types.h>
-    #include <scene.h>
+    #include "types.h"
+    #include "scene.h"
     #include <stdio.h>
     #include <stdlib.h>
     #include <SFML/Window.h>

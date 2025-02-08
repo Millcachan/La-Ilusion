@@ -10,6 +10,7 @@
 #include "game.h"
 #include "macro.h"
 #include "sound.h"
+#include "assets.h"
 
 /**
  * @brief Init the screen and windows options.
