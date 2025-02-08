@@ -2,11 +2,12 @@
 ** EPITECH PROJECT, 2024
 ** La-Ilusi-n
 ** File description:
-** display_menu.c
+** Implementation for
+** free_ingame
 */
 
 #include "game.h"
-#include "macro.h"
+
 
 void free_ingame(game_t *game)
 {
