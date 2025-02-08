@@ -26,12 +26,12 @@ static musics_t init_musics(void)
 {
     musics_t musics;
     const char *files[MUSIC_COUNT] = {
-        "../../assets/musics/menu.ogg",
-        "../../assets/musics/main_music.ogg",
-        "../../assets/musics/start.ogg",
-        "../../assets/musics/jump.ogg",
-        "../../assets/musics/slide.ogg",
-        "../../assets/musics/dead.ogg"
+        "assets/musics/menu.ogg",
+        "assets/musics/main_music.ogg",
+        "assets/musics/start.ogg",
+        "assets/musics/jump.ogg",
+        "assets/musics/slide.ogg",
+        "assets/musics/dead.ogg"
     };
     const float default_volumes[MUSIC_COUNT] = {90.0f, 80.0f, 80.0f, 50.0f, 80.0f, 150.0f};
 
