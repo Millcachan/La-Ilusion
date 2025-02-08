@@ -18,7 +18,7 @@
 sfSprite *load_sprite(const char *path)
  {
      sfSprite *sprite = sfSprite_create();
-     sfTexture *texture = sfTexture_createSrgbFromFile(path, NULL);
+     sfTexture *texture = sfTexture_createFromFile(path, NULL);
 
      if (texture == NULL) {
          fprintf(stderr, "Error: Failed to load sprite located at %s", path);

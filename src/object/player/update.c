@@ -40,4 +40,5 @@ void player_update(player_t *player)
 
     // Update the player's position
     sfSprite_setPosition(player->sprite, position);
+
 }

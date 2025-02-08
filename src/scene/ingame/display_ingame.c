@@ -17,5 +17,7 @@ void display_ingame(game_t *game)
 
     for (int i = 0; data->background[i]; i++) {
         SPRITE_DRAW(game->screen.window, data->background[i], NULL);
+        SPRITE_DRAW(game->screen.window, data->player->sprite, NULL);
     }
+
 }

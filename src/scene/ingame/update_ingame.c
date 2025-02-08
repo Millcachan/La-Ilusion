@@ -20,4 +20,5 @@ void update_ingame(game_t *game)
         rect.left += (int)(game->speed) * (i * 2);
         sfSprite_setTextureRect(data->background[i], rect);
     }
+    player_update(data->player);
 }

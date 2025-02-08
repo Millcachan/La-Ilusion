@@ -5,6 +5,7 @@
 ** load_menu.c
 */
 
+#include "assets.h"
 #include "game.h"
 #include "macro.h"
 #include <string.h>
@@ -32,10 +33,11 @@ void load_ingame(game_t *game)
     scene_ingame_t *data = game->scene->data;
     data->background = malloc(sizeof(sfSprite *) * 6);
     data->background_texture = malloc(sizeof(sfTexture *) * 6);
+    data->player = malloc(sizeof(player_t *));
 
     for (int i = 0; i < 5; i++) {
         char filePath[256];
-        snprintf(filePath, sizeof(filePath), "assets/background/layer_%d.png", i);  
+        snprintf(filePath, sizeof(filePath), "assets/background/layer_%d.png", i);
         data->background_texture[i] = sfTexture_createFromFile(filePath, NULL);
         sfTexture_setRepeated(data->background_texture[i], sfTrue);
         data->background[i] = sfSprite_create();
@@ -44,4 +46,12 @@ void load_ingame(game_t *game)
     }
     data->background[5] = NULL;
     data->background_texture[5] = NULL;
+
+    data->player->state = PS_NORMAL;
+    data->player->sprite = load_sprite("assets/player/player.png");
+    data->player->accel_y = 0;
+    sfSprite_setPosition(data->player->sprite, (sfVector2f){
+        0.0f, WINDOW_HEIGHT / 2.f
+    });
+    sfSprite_setTextureRect(data->player->sprite, (sfIntRect){0, 0, 32, 32});
 }

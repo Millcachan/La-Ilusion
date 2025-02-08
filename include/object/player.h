@@ -20,8 +20,8 @@
  * @brief Player states
  */
 typedef enum {
-    PS_JUMP,
     PS_NORMAL,
+    PS_JUMP,
     PS_SLIDE,
 } player_state_t;
 

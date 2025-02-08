@@ -26,6 +26,20 @@ typedef struct player_s player_t;        // defined in player.h (l.29)
 
 ///////////////////////////////////////////
 //                                       //
+//              Enumerations             //
+//                                       //
+///////////////////////////////////////////
+
+typedef enum {
+    ST_NONE,
+
+    // ST_MAIN_MENU,
+    ST_INGAME
+} scene_type_t;
+
+
+///////////////////////////////////////////
+//                                       //
 //              Type Aliases             //
 //                                       //
 ///////////////////////////////////////////

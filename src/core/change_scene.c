@@ -22,7 +22,7 @@ void change_scene(game_t *game, scene_type_t scene_type)
 
     if (game->scene_type != ST_NONE)
         scenes[game->scene_type].free(game);
-    
+
     if (game->current_music)
         sfMusic_stop(game->current_music);
 

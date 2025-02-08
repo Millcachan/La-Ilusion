@@ -8,6 +8,7 @@
 #ifndef SCENE_H
     #define SCENE_H
     #include "types.h"
+    #include "object/player.h"
     #include <stdlib.h>
     #include <SFML/Window.h>
     #include <SFML/System.h>
@@ -19,12 +20,7 @@
  * @brief All different scene types
  * /!\ Do not change the order of these
  */
-typedef enum {
-    ST_NONE,
 
-    // ST_MAIN_MENU,
-    ST_INGAME
-} scene_type_t;
 
 
 /**
@@ -43,6 +39,7 @@ struct scene_s {
 struct scene_ingame_s {
     sfSprite **background;
     sfTexture **background_texture;
+    player_t *player;
 };
 
 

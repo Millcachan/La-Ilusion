@@ -17,7 +17,7 @@
  */
 static void init_screen(screen_t *screen)
 {
-    screen->mode = (sfVideoMode){711, 400, 32};
+    screen->mode = (sfVideoMode){WINDOW_WIDTH, WINDOW_HEIGHT, 32};
     screen->window = WINDOW_CREATE(screen->mode, "La Ilusion", sfClose, NULL);
     WINDOW_FRAMELIMIT(screen->window, 144);
 }
@@ -26,12 +26,12 @@ static musics_t init_musics(void)
 {
     musics_t musics;
     const char *files[MUSIC_COUNT] = {
-        "../../assets/musics/menu.ogg",
-        "../../assets/musics/main_music.ogg",
-        "../../assets/musics/start.ogg",
-        "../../assets/musics/jump.ogg",
-        "../../assets/musics/slide.ogg",
-        "../../assets/musics/dead.ogg"
+        "assets/musics/menu.ogg",
+        "assets/musics/main_music.ogg",
+        "assets/musics/start.ogg",
+        "assets/musics/jump.ogg",
+        "assets/musics/slide.ogg",
+        "assets/musics/dead.ogg"
     };
     const float default_volumes[MUSIC_COUNT] = {90.0f, 80.0f, 80.0f, 50.0f, 80.0f, 150.0f};
 
