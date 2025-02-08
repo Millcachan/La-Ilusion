@@ -35,14 +35,15 @@ int game_mainloop(void)
     game_t *game = init_game(get_game());
     float seconds;
 
+    change_scene(game, ST_INGAME);
     while (IS_OPEN(game->screen.window)) {
         seconds = get_time(game);
         while (POLL_EVENT(game->screen.window, &game->screen.event)) {
             event_manager(game);
         }
-        while (seconds > 0.1f) {
+        while (seconds > 0.05f) {
             update(game);
-            seconds -= 0.1f;
+            seconds -= 0.05f;
         }
         display(game);
     }

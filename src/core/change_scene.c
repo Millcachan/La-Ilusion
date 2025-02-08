@@ -20,9 +20,9 @@ void change_scene(game_t *game, scene_type_t scene_type)
     if (scene_type == game->scene_type)
         return;  // don't do anything if the scene doesn't change
 
-    sfMusic_stop(game->current_music);
+    // sfMusic_stop(game->current_music);
 
-    free_current_scene(game);
+    // free_current_scene(game);
 
     game->scene_type = scene_type;  // Update the game's scene to new scene
 

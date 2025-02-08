@@ -17,7 +17,7 @@
  */
 static void init_screen(screen_t *screen)
 {
-    screen->mode = (sfVideoMode){800, 600, 32};
+    screen->mode = (sfVideoMode){711, 400, 32};
     screen->window = WINDOW_CREATE(screen->mode, "La Ilusion", sfClose, NULL);
     WINDOW_FRAMELIMIT(screen->window, 144);
 }
@@ -60,6 +60,7 @@ game_t *init_game(game_t *game)
     init_screen(&game->screen);
     game->clock = CLOCK_CREATE();
     game->musics = init_musics();
+    game->speed = 1;
     game->current_music = game->musics.music[MENU];
     change_scene(game, ST_NONE);
     sfMusic_play(game->current_music);
