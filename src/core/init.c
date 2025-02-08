@@ -23,7 +23,30 @@ static void init_screen(screen_t *screen)
 
 static musics_t init_musics(void)
 {
-    musics_t musics = { 0 };
+    musics_t musics;
+    const char *files[MUSIC_COUNT] = {
+        "../../assets/musics/menu.ogg",
+        "../../assets/musics/main_music.ogg",
+        "../../assets/musics/start.ogg",
+        "../../assets/musics/jump.ogg",
+        "../../assets/musics/slide.ogg",
+        "../../assets/musics/dead.ogg"
+    };
+    const float default_volumes[MUSIC_COUNT] = {90.0f, 80.0f, 80.0f, 50.0f, 80.0f, 150.0f};
+
+    for (int i = 0; i < MUSIC_COUNT; i++) {
+        musics.music[i] = sfMusic_createFromFile(files[i]);
+        musics.volume[i] = default_volumes[i];
+
+        if (!musics.music[i]) {
+            fprintf(stderr, "Failed to load music: %s\n", files[i]);
+            exit(ERROR);
+        }
+
+        sfMusic_setVolume(musics.music[i], musics.volume[i]);
+    }
+    sfMusic_setLoop(musics.music[MENU], sfTrue);
+    sfMusic_setLoop(musics.music[MAIN_MUSIC], sfTrue);
 
     return musics;
 }

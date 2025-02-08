@@ -17,6 +17,7 @@
     #include <SFML/Graphics.h>
     #include <SFML/Audio.h>
 
+    #define MUSIC_COUNT 6
 
 /**
  * @brief Structure screen, containing screen
@@ -35,8 +36,8 @@ struct screen_s {
  * tracks, as well as their associated volumes
  */
 struct musics_s {
-    sfMusic *music[1];
-    float volume[1];
+    sfMusic *music[MUSIC_COUNT];
+    float volume[MUSIC_COUNT];
 };
 
 
