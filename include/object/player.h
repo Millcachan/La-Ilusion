@@ -40,6 +40,7 @@ void player_display(game_t *game, player_t *player);
 // Utils:
 player_t *player_create(void);
 void player_update_texture(player_t *player, sfTexture **textures);
+void player_snap_to_platform(scene_ingame_t *data);
 
 
 #endif
