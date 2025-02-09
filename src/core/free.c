@@ -20,7 +20,7 @@ void free_current_scene(game_t *game)
 
 static void free_music(game_t *game)
 {
-    for (int i = 0; i < 1; i++)
+    for (int i = 0; i < 6; i++)
         sfMusic_destroy(game->musics.music[i]);
 }
 
