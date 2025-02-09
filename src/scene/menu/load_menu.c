@@ -7,6 +7,7 @@
 
 #include "game.h"
 #include "macro.h"
+#include "sound.h"
 #include <string.h>
 
 static void scale_image_to_window(sfSprite* sprite, sfRenderWindow* window)
@@ -43,6 +44,8 @@ void load_menu(game_t *game)
 {
     if (!game)
         return;
+
+    change_music(game, MENU);
 
     if (!game->scene)
         game->scene = malloc(sizeof(scene_t));
