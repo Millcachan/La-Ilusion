@@ -22,9 +22,13 @@ void platforms_init(platform_t **platforms, sfTexture **textures)
             platform_generate_position(i == 0 ? NULL : platforms[i - 1]);
 
         platforms[i] = platform_create(textures);
-        if (i == 0)  // Make the first platform bigger (easier for player)
+
+        if (i == 0) {  // Predefine the started platform
+            platforms[i]->color = PC_RED;
+            sfSprite_setTexture(platforms[i]->sprite, textures[PC_RED], sfFalse);
             sfSprite_setTextureRect(platforms[0]->sprite, (sfIntRect){ 0, 0, 200, 13 });
+        }
+
         sfSprite_setPosition(platforms[i]->sprite, platform_position);
     }
-    platforms[0]->color = PC_RED;
 }
