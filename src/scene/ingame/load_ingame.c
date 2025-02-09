@@ -107,4 +107,6 @@ void load_ingame(game_t *game)
     sfText_setCharacterSize(data->timer_text, 30);
     sfText_setFillColor(data->timer_text, sfBlack);
     sfText_setPosition(data->timer_text, (sfVector2f){5, 5});
+
+    data->color = 0;
 }

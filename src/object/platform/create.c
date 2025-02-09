@@ -22,7 +22,10 @@ platform_t *platform_create(unsigned char color, sfTexture **textures)
     platform_t *platform = malloc(sizeof(platform_t));
 
     platform->color = color;
-    platform->is_active = false;  // will be updated in platform_update anyways
+        if (platform->color)
+        platform->is_active = false;
+    else
+        platform->is_active = true;
     platform->sprite = sfSprite_create();
 
     sfSprite_setTexture(platform->sprite, textures[color], sfFalse);

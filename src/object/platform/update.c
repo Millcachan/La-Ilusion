@@ -36,6 +36,18 @@ void platform_update(platform_t *platform, scene_ingame_t *data)
     sfVector2f position = sfSprite_getPosition(platform->sprite);
     sfFloatRect platform_bounds = sfSprite_getGlobalBounds(platform->sprite);
 
+    if (data->color) {
+        if (!platform->color)
+            platform->is_active = false;
+        else
+            platform->is_active = true;
+    } else {
+        if (platform->color)
+            platform->is_active = false;
+        else
+            platform->is_active = true;
+    }
+
     // Delete platform if it goes out of bounds and create a new one
     if (position.x + platform_bounds.width < 0.f) {
         platform_replace(platform, data);
@@ -43,10 +55,11 @@ void platform_update(platform_t *platform, scene_ingame_t *data)
     }
 
     // Handle player collision
-    if (player_collides(platform_bounds, player))
+    if (player_collides(platform_bounds, player) && platform->is_active)
         handle_collision(platform, player);
 
     // Update position (give the illusion the player is running)
     position.x -= PLAYER_SPEED;
     sfSprite_setPosition(platform->sprite, position);
+
 }
