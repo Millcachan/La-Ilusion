@@ -12,7 +12,7 @@
 
 void event_menu(game_t *game)
 {
-    if (!game)
+    if (!game || !game->scene)
         return;
 
     scene_menu_t *data = game->scene->data;

@@ -12,7 +12,7 @@
 
 void update_death(game_t *game)
 {
-    if (!game)
+    if (!game || !game->scene)
         return;
 
     scene_death_t *data = game->scene->data;

@@ -71,16 +71,31 @@ static void load_text(scene_death_t *data, float score)
     data->text_death = sfText_create();
     sfText_setString(data->text_death, "You died");
     sfText_setFont(data->text_death, data->font);
-    sfText_setCharacterSize(data->text_death, 20);
-    sfText_setPosition(data->text_death, (sfVector2f){WINDOW_WIDTH / 2 - 50, WINDOW_HEIGHT / 2 - 100});
+    sfText_setCharacterSize(data->text_death, 80);
+    sfText_setPosition(data->text_death, (sfVector2f){WINDOW_WIDTH / 2 - 190, WINDOW_HEIGHT / 2 - 150});
     data->text_score = sfText_create();
 
     char score_str[16];
     snprintf(score_str, sizeof(score_str), "Score : %d", (int)(score * 100));
     sfText_setString(data->text_score, score_str);
     sfText_setFont(data->text_score, data->font);
-    sfText_setCharacterSize(data->text_score, 15);
-    sfText_setPosition(data->text_score, (sfVector2f){WINDOW_WIDTH / 2 - 40, WINDOW_HEIGHT / 2});
+    sfText_setCharacterSize(data->text_score, 20);
+    sfText_setPosition(data->text_score, (sfVector2f){WINDOW_WIDTH / 2 - 65, WINDOW_HEIGHT / 2});
+
+    data->text_button = sfText_create();
+    sfText_setString(data->text_button, "Restart");
+    sfText_setFont(data->text_button, data->font);
+    sfText_setCharacterSize(data->text_button, 40);
+    sfText_setPosition(data->text_button, (sfVector2f){WINDOW_WIDTH / 2 - 90, WINDOW_HEIGHT / 2 + 50});
+}
+
+void load_button(scene_death_t *data)
+{
+    data->button_texture = load_texture("assets/button/button.png");
+    data->button = sfSprite_create();
+    sfSprite_setTexture(data->button, data->button_texture, sfTrue);
+    sfSprite_setScale(data->button, (sfVector2f){1.5f, 1});
+    sfSprite_setPosition(data->button, (sfVector2f){WINDOW_WIDTH / 2 - 110, WINDOW_HEIGHT / 2 + 40});
 }
 
 
@@ -110,4 +125,5 @@ void load_death(game_t *game)
 
     load_fade(data);
     load_text(data, game->score);
+    load_button(data);
 }
