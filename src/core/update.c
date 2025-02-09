@@ -14,8 +14,7 @@
 void change_music(game_t *game, int index)
 {
     if (index == MAIN_MUSIC || index == MENU || index == DEAD) {
-        if (game->current_music)
-            sfMusic_stop(game->current_music);
+        sfMusic_stop(game->current_music);
         game->current_music = game->musics.music[index];
         sfMusic_setVolume(game->current_music, game->musics.volume[index]);
         sfMusic_play(game->current_music);
