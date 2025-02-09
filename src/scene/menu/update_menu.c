@@ -10,6 +10,6 @@
 
 void update_menu(game_t *game)
 {
-    if (game)
+    if (!game)
         return;
 }
