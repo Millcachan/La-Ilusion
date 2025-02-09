@@ -47,7 +47,7 @@ sfVector2f platform_generate_position(const platform_t *previous)
     position.y += random_direction.y;
 
     // Clamp y so it doesn't go out of screen
-    if (position.y + 40.f <= 0.f)
+    if (position.y - 40.f <= 0.f)
         position.y += 80.f;
     if (position.y + 13.f >= WINDOW_HEIGHT)
         position.y -= 80.f;
