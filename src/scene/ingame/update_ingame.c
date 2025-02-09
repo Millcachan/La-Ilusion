@@ -9,6 +9,7 @@
 #include "game.h"
 #include "object/platform.h"
 #include "object/player.h"
+#include "macro.h"
 
 
 void update_ingame(game_t *game)
@@ -36,4 +37,10 @@ void update_ingame(game_t *game)
     // Update player state (influenced by platforms during collisions):
     if (data->player->state != player_state)
         player_update_texture(data->player, data->player_textures);
+
+    // Update time:
+    char time_str[16];
+    game->score += 1.0f / 150.0f;
+    snprintf(time_str, sizeof(time_str), "SCORE : %d", (int)(game->score * 100));
+    sfText_setString(data->timer_text, time_str);
 }
