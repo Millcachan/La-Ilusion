@@ -21,7 +21,7 @@ static int generate_x_offset(void)
 sfVector2f platform_generate_position(const platform_t *previous)
 {
     if (previous == NULL)
-        return (sfVector2f){ 0.0f, (float)WINDOW_HEIGHT / 2 + 32.f };
+        return (sfVector2f){ 0.0f, (float)WINDOW_HEIGHT / 2 + 34.f };
 
     sfVector2f position = sfSprite_getPosition(previous->sprite);
 

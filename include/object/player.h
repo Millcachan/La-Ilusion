@@ -12,8 +12,6 @@
     #include <SFML/Window.h>
     #include <SFML/System.h>
     #include <SFML/Graphics.h>
-    #define JUMP_STRENGTH 10.f
-    #define PLAYER_GRAVITY 1.f
 
 
 /**

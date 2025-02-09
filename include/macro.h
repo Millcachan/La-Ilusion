@@ -26,6 +26,11 @@
     #define PLATFORM_MIN_WIDTH 25
     #define PLATFORM_MAX_WIDTH 150
 
+    // Player
+    #define PLAYER_SPEED 10.f
+    #define JUMP_STRENGTH 25.f
+    #define PLAYER_GRAVITY 5.f
+
     // Defines for window
     #define CLEAR sfRenderWindow_clear
     #define CLOSE sfRenderWindow_close

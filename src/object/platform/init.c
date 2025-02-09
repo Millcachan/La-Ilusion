@@ -28,4 +28,6 @@ void platforms_init(platform_t **platforms, sfTexture **textures)
 
         current_color = (unsigned char)(current_color + 1) % 2;  // go to next color
     }
+
+    sfSprite_setTextureRect(platforms[0]->sprite, (sfIntRect){ 0, 0, 200, 13 });
 }

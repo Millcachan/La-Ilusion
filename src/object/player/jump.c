@@ -6,6 +6,7 @@
 */
 
 #include "object/player.h"
+#include "macro.h"
 
 
 void player_jump(player_t *player, sfTexture **textures)
