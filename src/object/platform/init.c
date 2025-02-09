@@ -24,10 +24,11 @@ void platforms_init(platform_t **platforms, sfTexture **textures)
             platform_generate_position(i == 0 ? NULL : platforms[i - 1]);
 
         platforms[i] = platform_create(current_color, textures);
+        if (i == 0)  // Make the first platform bigger (easier for player)
+            sfSprite_setTextureRect(platforms[0]->sprite, (sfIntRect){ 0, 0, 200, 13 });
         sfSprite_setPosition(platforms[i]->sprite, platform_position);
 
         current_color = (unsigned char)(current_color + 1) % 2;  // go to next color
     }
 
-    sfSprite_setTextureRect(platforms[0]->sprite, (sfIntRect){ 0, 0, 200, 13 });
 }
