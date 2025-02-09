@@ -12,14 +12,6 @@
 #include <stdlib.h>
 
 
-static int generate_width(void)
-{
-    return
-        rand() % (PLATFORM_MAX_WIDTH - PLATFORM_MIN_WIDTH) +
-        PLATFORM_MIN_WIDTH;
-}
-
-
 platform_t *platform_create(unsigned char color, sfTexture **textures)
 {
     if (color > 1) {
@@ -34,10 +26,7 @@ platform_t *platform_create(unsigned char color, sfTexture **textures)
     platform->sprite = sfSprite_create();
 
     sfSprite_setTexture(platform->sprite, textures[color], sfFalse);
-    sfSprite_setTextureRect(platform->sprite, (sfIntRect){
-        0, 0, generate_width(), 13
-    });
-
+    platform_randomize_width(platform);
 
     return platform;
 }

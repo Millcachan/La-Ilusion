@@ -38,7 +38,7 @@ void platform_update(platform_t *platform, scene_ingame_t *data)
 
     // Delete platform if it goes out of bounds and create a new one
     if (position.x + platform_bounds.width < 0.f) {
-        platform_replace(platform, data->platform_textures);
+        platform_replace(platform, data);
         return;
     }
 

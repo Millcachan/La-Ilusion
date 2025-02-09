@@ -94,4 +94,5 @@ void load_ingame(game_t *game)
     sfTexture_setRepeated(data->platform_textures[1], sfTrue);
 
     platforms_init(data->platforms, data->platform_textures);
+    data->last_platform = data->platforms[19];
 }

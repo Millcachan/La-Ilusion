@@ -26,8 +26,9 @@ void platform_update(platform_t *platform, scene_ingame_t *data);
 
 // Utils:
 sfVector2f platform_generate_position(const platform_t *previous);
-void platform_replace(platform_t *platform, sfTexture **textures);
+void platform_replace(platform_t *platform, scene_ingame_t *data);
 void handle_collision(platform_t *platform, player_t *player);
+void platform_randomize_width(platform_t *platform);
 
 
 #endif

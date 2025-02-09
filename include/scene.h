@@ -35,6 +35,7 @@ struct scene_ingame_s {
     sfTexture **player_textures;
 
     platform_t *platforms[20];
+    platform_t *last_platform;
     sfTexture *platform_textures[2];
 
     // Background:

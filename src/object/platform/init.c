@@ -30,5 +30,4 @@ void platforms_init(platform_t **platforms, sfTexture **textures)
 
         current_color = (unsigned char)(current_color + 1) % 2;  // go to next color
     }
-
 }
