@@ -46,6 +46,9 @@ struct scene_ingame_s {
     float time;
     sfText *timer_text;
     sfFont *timer_font;
+
+    // color to render transparent
+    unsigned int color;
 };
 
 struct scene_death_s {
