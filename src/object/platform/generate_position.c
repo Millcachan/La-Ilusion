@@ -14,7 +14,7 @@
 
 static float generate_offset(void)
 {
-    return (float)(rand() % 100) + 40.f;
+    return (float)(rand() % 20) + 80.f;
 }
 
 static void normalize_vector(sfVector2f *vector)
@@ -33,14 +33,14 @@ sfVector2f platform_generate_position(const platform_t *previous)
     sfVector2f position = sfSprite_getPosition(previous->sprite);
     sfVector2f random_direction = {
         (float)(rand() % 990) + 10,
-        (float)(rand() % 750) - 375,  // allow less variation in y axis
+        (float)(rand() % 1000) - 500,  // allow less variation in y axis
     };
 
     normalize_vector(&random_direction);
 
     float offset = generate_offset();
     random_direction.x *= offset;
-    random_direction.y *= offset / 1.5f;
+    random_direction.y *= offset / 1.25f;
 
     float previous_width = sfSprite_getGlobalBounds(previous->sprite).width;
     position.x += random_direction.x + previous_width;
