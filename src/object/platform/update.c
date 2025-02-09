@@ -37,15 +37,21 @@ void platform_update(platform_t *platform, scene_ingame_t *data)
     sfFloatRect platform_bounds = sfSprite_getGlobalBounds(platform->sprite);
 
     if (data->color) {
-        if (!platform->color)
+        if (!platform->color) {
             platform->is_active = false;
-        else
+            sfSprite_setColor(platform->sprite ,(sfColor){255, 255, 255, 100});
+        } else {
             platform->is_active = true;
+            sfSprite_setColor(platform->sprite ,(sfColor){255, 255, 255, 255});
+        }
     } else {
-        if (platform->color)
+        if (platform->color) {
             platform->is_active = false;
-        else
+            sfSprite_setColor(platform->sprite ,(sfColor){255, 255, 255, 100});
+        } else {
             platform->is_active = true;
+            sfSprite_setColor(platform->sprite ,(sfColor){255, 255, 255, 255});
+        }
     }
 
     // Delete platform if it goes out of bounds and create a new one
