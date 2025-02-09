@@ -45,6 +45,13 @@ struct scene_ingame_s {
     sfTexture **background_texture;
 };
 
+struct scene_death_s {
+    // Background:
+    sfSprite **background;
+    sfTexture **background_texture;
+    sfRectangleShape *fade;
+};
+
 
 void load_ingame(game_t *game);
 void update_ingame(game_t *game);
@@ -52,13 +59,22 @@ void event_ingame(game_t *game);
 void display_ingame(game_t *game);
 void free_ingame(game_t *game);
 
+
+void load_death(game_t *game);
+void update_death(game_t *game);
+void event_death(game_t *game);
+void display_death(game_t *game);
+void free_death(game_t *game);
+
+
 /**
  * @brief Every scene enum and function pointer.
  */
 static const scene_t scenes[] = {
     {ST_NONE, NULL, NULL, NULL, NULL, NULL, NULL},
     // {ST_MAIN_MENU, NULL, NULL, NULL, NULL, NULL},
-    {ST_INGAME, load_ingame, event_ingame, update_ingame, display_ingame, free_ingame, NULL}
+    {ST_INGAME, load_ingame, event_ingame, update_ingame, display_ingame, free_ingame, NULL},
+    {ST_DEATH, load_death, event_death, update_death, display_death, free_death, NULL}
 };
 
 
