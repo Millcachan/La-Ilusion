@@ -58,6 +58,8 @@ struct game_s {
     // Game Lifetime:
     screen_t screen;
     sfClock *clock;
+
+    float score;
     unsigned int nb_frame;
     float speed;
 };

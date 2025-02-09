@@ -61,6 +61,7 @@ game_t *init_game(game_t *game)
     game->clock = CLOCK_CREATE();
     game->musics = init_musics();
     game->speed = 1;
+    game->score = 5500;
     game->current_music = game->musics.music[MENU];
     change_scene(game, ST_NONE);
     sfMusic_play(game->current_music);

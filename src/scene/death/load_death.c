@@ -61,9 +61,9 @@ static void load_fade(scene_death_t *data)
     sfRectangleShape_setPosition(data->fade, (sfVector2f){0, 0});
 }
 
-static void load_text(scene_death_t *data)
+static void load_text(scene_death_t *data, float score)
 {
-    data->font = sfFont_createFromFile("assets/font/FutureMillennium.ttf");
+    data->font = sfFont_createFromFile("assets/fonts/FutureMillennium.ttf");
     if (!data->font) {
         fprintf(stderr, "Error: Failed to load font\n");
         exit(ERROR);
@@ -72,12 +72,15 @@ static void load_text(scene_death_t *data)
     sfText_setString(data->text_death, "You died");
     sfText_setFont(data->text_death, data->font);
     sfText_setCharacterSize(data->text_death, 20);
-    sfText_setPosition(data->text_death, (sfVector2f){WINDOW_WIDTH / 2 - 60, WINDOW_HEIGHT / 2 - 100});
+    sfText_setPosition(data->text_death, (sfVector2f){WINDOW_WIDTH / 2 - 50, WINDOW_HEIGHT / 2 - 100});
     data->text_score = sfText_create();
-    sfText_setString(data->text_score, "Score: 0");
+
+    char score_str[16];
+    snprintf(score_str, sizeof(score_str), "Score : %d", (int)(score * 100));
+    sfText_setString(data->text_score, score_str);
     sfText_setFont(data->text_score, data->font);
     sfText_setCharacterSize(data->text_score, 15);
-    sfText_setPosition(data->text_score, (sfVector2f){WINDOW_WIDTH / 2 - 30, WINDOW_HEIGHT / 2 + 100});
+    sfText_setPosition(data->text_score, (sfVector2f){WINDOW_WIDTH / 2 - 40, WINDOW_HEIGHT / 2});
 }
 
 
@@ -106,5 +109,5 @@ void load_death(game_t *game)
     data->background_texture[5] = NULL;
 
     load_fade(data);
-    load_text(data);
+    load_text(data, game->score);
 }

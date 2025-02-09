@@ -26,7 +26,7 @@ void update_ingame(game_t *game)
     player_update(data->player, data->player_textures);
 
     char time_str[16];
-    data->time += 1.0f / 144.0f;
-    snprintf(time_str, sizeof(time_str), "SCORE : %d", (int)(data->time * 100));
+    game->score += 1.0f / 150.0f;
+    snprintf(time_str, sizeof(time_str), "SCORE : %d", (int)(game->score * 100));
     sfText_setString(data->timer_text, time_str);
 }
