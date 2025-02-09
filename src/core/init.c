@@ -10,6 +10,7 @@
 #include "game.h"
 #include "macro.h"
 #include "sound.h"
+#include <time.h>
 
 
 /**
@@ -57,10 +58,12 @@ static musics_t init_musics(void)
  */
 game_t *init_game(game_t *game)
 {
+    srand((unsigned int)time(NULL));  // necessary for procedural generation
     init_screen(&game->screen);
     game->clock = CLOCK_CREATE();
     game->musics = init_musics();
     game->speed = 1;
+    game->score = 0;
     game->current_music = game->musics.music[MENU];
     change_scene(game, ST_NONE);
     return game;

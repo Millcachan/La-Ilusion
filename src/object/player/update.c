@@ -7,6 +7,7 @@
 */
 
 #include "object/player.h"
+#include "macro.h"
 #include <SFML/Graphics.h>
 #include <stdbool.h>
 
@@ -42,4 +43,5 @@ void player_update(player_t *player, sfTexture **textures)
     // Update the player's position
     sfSprite_setPosition(player->sprite, position);
 
+    player->state = PS_JUMP;
 }

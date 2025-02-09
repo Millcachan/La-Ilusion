@@ -8,18 +8,12 @@
 #ifndef SCENE_H
     #define SCENE_H
     #include "types.h"
+    #include "object/platform.h"
     #include <stdlib.h>
     #include <SFML/Window.h>
     #include <SFML/System.h>
     #include <SFML/Graphics.h>
     #include <SFML/Audio.h>
-
-
-/**
- * @brief All different scene types
- * /!\ Do not change the order of these
- */
-
 
 
 /**
@@ -40,11 +34,32 @@ struct scene_ingame_s {
     player_t *player;
     sfTexture **player_textures;
 
+    platform_t *platforms[20];
+    platform_t *last_platform;
+    sfTexture *platform_textures[2];
+
     // Background:
     sfSprite **background;
     sfTexture **background_texture;
+
+    // Chrono
+    float time;
+    sfText *timer_text;
+    sfFont *timer_font;
 };
 
+struct scene_death_s {
+    // Background:
+    sfSprite **background;
+    sfTexture **background_texture;
+    sfFont *font;
+    sfText *text_death;
+    sfText *text_score;
+
+    sfRectangleShape *fade;
+
+};
+ 
 struct scene_menu_s {
     // Background:
     sfSprite *background;
@@ -62,6 +77,13 @@ void event_ingame(game_t *game);
 void display_ingame(game_t *game);
 void free_ingame(game_t *game);
 
+
+void load_death(game_t *game);
+void update_death(game_t *game);
+void event_death(game_t *game);
+void display_death(game_t *game);
+void free_death(game_t *game);
+
 void load_menu(game_t *game);
 void update_menu(game_t *game);
 void event_menu(game_t *game);
@@ -73,8 +95,10 @@ void free_menu(game_t *game);
  */
 static const scene_t scenes[] = {
     {ST_NONE, NULL, NULL, NULL, NULL, NULL, NULL},
+    // {ST_MAIN_MENU, NULL, NULL, NULL, NULL, NULL},
     {ST_MAIN_MENU, load_menu, event_menu, update_menu, display_menu, free_menu, NULL},
     {ST_INGAME, load_ingame, event_ingame, update_ingame, display_ingame, free_ingame, NULL}
+    {ST_DEATH, load_death, event_death, update_death, display_death, free_death, NULL}
 };
 
 
