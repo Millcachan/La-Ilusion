@@ -12,7 +12,7 @@
 
 void free_ingame(game_t *game)
 {
-    if (!game)
+    if (!game || !game->scene)
         return;
 
     scene_ingame_t *data = game->scene->data;
