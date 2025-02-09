@@ -11,11 +11,9 @@
 #include <stdlib.h>
 
 
-static int generate_x_offset(void)
+static float generate_x_offset(void)
 {
-    return
-        rand() % 100 +
-        20;
+    return (float)(rand() % 80) + 40.f;
 }
 
 sfVector2f platform_generate_position(const platform_t *previous)
@@ -27,8 +25,7 @@ sfVector2f platform_generate_position(const platform_t *previous)
 
     float prev_width = sfSprite_getGlobalBounds(previous->sprite).width;
 
-    position.x += prev_width;  // prevent collisions
-    position.x += (float)generate_x_offset();
+    position.x += prev_width + generate_x_offset();
     position.y += (float)(rand() % 80 - 40);
 
     return position;
