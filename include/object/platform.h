@@ -8,15 +8,23 @@
 
 #ifndef OBJECT_PLATFORM_H
     #define OBJECT_PLATFORM_H
+    #include "types.h"
     #include <stdbool.h>
     #include <SFML/Graphics.h>
 
 
 struct platform_s {
     sfSprite *sprite;
-    float accel_x;
     bool is_active;
+    enum { PC_RED, PC_GREEN } color;
 };
+
+
+platform_t *platform_create(unsigned char color, sfTexture **textures);
+void platforms_init(platform_t **platforms, sfTexture **textures);
+
+// Utils:
+sfVector2f platform_generate_position(const platform_t *previous);
 
 
 #endif

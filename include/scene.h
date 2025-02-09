@@ -8,18 +8,12 @@
 #ifndef SCENE_H
     #define SCENE_H
     #include "types.h"
+    #include "object/platform.h"
     #include <stdlib.h>
     #include <SFML/Window.h>
     #include <SFML/System.h>
     #include <SFML/Graphics.h>
     #include <SFML/Audio.h>
-
-
-/**
- * @brief All different scene types
- * /!\ Do not change the order of these
- */
-
 
 
 /**
@@ -39,6 +33,9 @@ struct scene_ingame_s {
     // Player:
     player_t *player;
     sfTexture **player_textures;
+
+    platform_t *platforms[20];
+    sfTexture *platform_textures[2];
 
     // Background:
     sfSprite **background;

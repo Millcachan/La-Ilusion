@@ -64,9 +64,9 @@ void load_ingame(game_t *game)
     game->scene->data = malloc(sizeof(scene_ingame_t));
 
     scene_ingame_t *data = game->scene->data;
+    data->player_textures = malloc(3 * sizeof(sfTexture *));
     data->background = malloc(6 * sizeof(sfSprite *));
     data->background_texture = malloc(6 * sizeof(sfTexture *));
-    data->player_textures = malloc(3 * sizeof(sfTexture *));
 
     // Background Setup:
     for (int i = 0; i < 5; i++) {
@@ -85,4 +85,13 @@ void load_ingame(game_t *game)
 
     data->player = player_create();
     player_update_texture(data->player, data->player_textures);
+
+    // Platform Setup:
+    data->platform_textures[0] = load_texture("assets/platforms/platform_red.png");
+    sfTexture_setRepeated(data->platform_textures[0], sfTrue);
+
+    data->platform_textures[1] = load_texture("assets/platforms/platform_green.jpg");
+    sfTexture_setRepeated(data->platform_textures[1], sfTrue);
+
+    platforms_init(data->platforms, data->platform_textures);
 }

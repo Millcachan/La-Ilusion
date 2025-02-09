@@ -22,6 +22,10 @@
     #define WINDOW_WIDTH 711
     #define WINDOW_HEIGHT 400
 
+    // Platforms
+    #define PLATFORM_MIN_WIDTH 25
+    #define PLATFORM_MAX_WIDTH 150
+
     // Defines for window
     #define CLEAR sfRenderWindow_clear
     #define CLOSE sfRenderWindow_close
