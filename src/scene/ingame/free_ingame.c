@@ -22,6 +22,10 @@ void free_ingame(game_t *game)
         sfTexture_destroy(data->background_texture[i]);
         sfSprite_destroy(data->background[i]);
     }
+
+    sfText_destroy(data->timer_text);
+    sfFont_destroy(data->timer_font);
+
     free(data->background);
     free(data->background_texture);
     free(data);

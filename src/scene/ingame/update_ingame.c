@@ -8,6 +8,7 @@
 
 #include "game.h"
 #include "object/player.h"
+#include "macro.h"
 
 
 void update_ingame(game_t *game)
@@ -23,4 +24,9 @@ void update_ingame(game_t *game)
         sfSprite_setTextureRect(data->background[i], rect);
     }
     player_update(data->player, data->player_textures);
+
+    char time_str[16];
+    data->time += 1.0f / 144.0f;
+    snprintf(time_str, sizeof(time_str), "SCORE : %d", (int)(data->time * 100));
+    sfText_setString(data->timer_text, time_str);
 }

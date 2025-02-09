@@ -43,6 +43,11 @@ struct scene_ingame_s {
     // Background:
     sfSprite **background;
     sfTexture **background_texture;
+
+    // Chrono
+    float time;
+    sfText *timer_text;
+    sfFont *timer_font;
 };
 
 struct scene_death_s {
@@ -55,7 +60,6 @@ struct scene_death_s {
 
     sfRectangleShape *fade;
 };
-
 
 void load_ingame(game_t *game);
 void update_ingame(game_t *game);

@@ -85,4 +85,12 @@ void load_ingame(game_t *game)
 
     data->player = player_create();
     player_update_texture(data->player, data->player_textures);
+
+    data->time = 0;
+    data->timer_font = sfFont_createFromFile("assets/fonts/FutureMillennium.ttf");
+    data->timer_text = sfText_create();
+    sfText_setFont(data->timer_text, data->timer_font);
+    sfText_setCharacterSize(data->timer_text, 30);
+    sfText_setFillColor(data->timer_text, sfBlack);
+    sfText_setPosition(data->timer_text, (sfVector2f){5, 5});
 }
