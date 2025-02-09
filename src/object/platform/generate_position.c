@@ -17,12 +17,6 @@ static float generate_offset(void)
     return (float)(rand() % 100) + 40.f;
 }
 
-static void multiply_vector(sfVector2f *vector, float mult)
-{
-    vector->x *= mult;
-    vector->y *= mult;
-}
-
 static void normalize_vector(sfVector2f *vector)
 {
     float magnitude = sqrtf(vector->x * vector->x + vector->y * vector->y);
@@ -43,7 +37,10 @@ sfVector2f platform_generate_position(const platform_t *previous)
     };
 
     normalize_vector(&random_direction);
-    multiply_vector(&random_direction, generate_offset());
+
+    float offset = generate_offset();
+    random_direction.x *= offset;
+    random_direction.y *= offset / 1.5f;
 
     float previous_width = sfSprite_getGlobalBounds(previous->sprite).width;
     position.x += random_direction.x + previous_width;
