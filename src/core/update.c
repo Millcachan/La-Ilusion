@@ -14,13 +14,15 @@
 void change_music(game_t *game, int index)
 {
     if (index == MAIN_MUSIC || index == MENU || index == DEAD) {
-        sfMusic_stop(game->current_music);
+        if (game->current_music)
+            sfMusic_stop(game->current_music);
         game->current_music = game->musics.music[index];
         sfMusic_setVolume(game->current_music, game->musics.volume[index]);
         sfMusic_play(game->current_music);
 
     } else {
-        sfMusic_stop(game->current_sound);
+        if (game->current_sound)
+            sfMusic_stop(game->current_sound);
         game->current_sound = game->musics.music[index];
         sfMusic_setVolume(game->current_sound, game->musics.volume[index]);
         sfMusic_play(game->current_sound);
