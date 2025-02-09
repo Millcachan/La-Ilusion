@@ -7,28 +7,19 @@
 */
 
 #include "object/platform.h"
-#include "macro.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 
-platform_t *platform_create(unsigned char color, sfTexture **textures)
+platform_t *platform_create(sfTexture **textures)
 {
-    if (color > 1) {
-        fprintf(stderr, "Error: color %hhu is not a valid color", color);
-        exit(ERROR);
-    }
-
     platform_t *platform = malloc(sizeof(platform_t));
 
-    platform->color = color;
-        if (platform->color)
-        platform->is_active = false;
-    else
-        platform->is_active = true;
+    platform->color = (unsigned char)(rand() % 2);
+    platform->is_active = platform->color == PC_RED;  // red is active by default
     platform->sprite = sfSprite_create();
 
-    sfSprite_setTexture(platform->sprite, textures[color], sfFalse);
+    sfSprite_setTexture(platform->sprite, textures[platform->color], sfFalse);
     platform_randomize_width(platform);
 
     return platform;

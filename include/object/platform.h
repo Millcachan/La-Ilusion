@@ -20,7 +20,7 @@ struct platform_s {
 };
 
 
-platform_t *platform_create(unsigned char color, sfTexture **textures);
+platform_t *platform_create(sfTexture **textures);
 void platforms_init(platform_t **platforms, sfTexture **textures);
 void platform_update(platform_t *platform, scene_ingame_t *data);
 
