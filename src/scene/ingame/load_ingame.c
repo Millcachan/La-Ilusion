@@ -8,6 +8,7 @@
 #include "game.h"
 #include "macro.h"
 #include "object/player.h"
+#include "sound.h"
 #include <string.h>
 
 
@@ -57,6 +58,8 @@ void load_ingame(game_t *game)
 {
     if (!game)
         return;
+
+    change_music(game, MAIN_MUSIC);
 
     if (!game->scene)
         game->scene = malloc(sizeof(scene_t));

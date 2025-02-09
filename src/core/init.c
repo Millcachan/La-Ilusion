@@ -34,7 +34,7 @@ static musics_t init_musics(void)
         "assets/musics/slide.ogg",
         "assets/musics/dead.ogg"
     };
-    const float default_volumes[MUSIC_COUNT] = {90.0f, 80.0f, 80.0f, 50.0f, 80.0f, 150.0f};
+    const float default_volumes[MUSIC_COUNT] = {60.0f, 40.0f, 70.0f, 20.0f, 50.0f, 120.0f};
 
     for (int i = 0; i < MUSIC_COUNT; i++) {
         musics.music[i] = sfMusic_createFromFile(files[i]);

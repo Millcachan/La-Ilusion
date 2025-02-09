@@ -8,6 +8,7 @@
 #include "game.h"
 #include "core.h"
 #include "macro.h"
+#include "sound.h"
 
 void event_menu(game_t *game)
 {
@@ -24,6 +25,7 @@ void event_menu(game_t *game)
         sfFloatRect quitButton = sfSprite_getGlobalBounds(data->button[1]);
 
         if (sfFloatRect_contains(&startButton, (float)mousePos.x, (float)mousePos.y)) {
+            change_music(game, START);
             change_scene(game, ST_INGAME);
             return;
         }
