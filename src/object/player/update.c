@@ -16,7 +16,7 @@ static bool is_out_of_bounds(sfVector2f position)
 {
     return
         (position.x + 16.f <= 0.f) ||
-        (position.y + 32.f >= WINDOW_HEIGHT);
+        (position.y - 32.f >= WINDOW_HEIGHT);
 }
 
 /**
