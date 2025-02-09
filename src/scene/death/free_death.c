@@ -27,4 +27,5 @@ void free_death(game_t *game)
     free(data->background_texture);
     free(data);
     free(game->scene);
+    game->scene = NULL;
 }

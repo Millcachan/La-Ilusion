@@ -28,7 +28,8 @@ void update_ingame(game_t *game)
 
     // Update player:
     player_state_t player_state = data->player->state;
-    player_update(data->player, data->player_textures);
+    if (!player_update(data->player, game))  // false is returned when the player dies
+        return;
 
     // Update platforms:
     for (int i = 0; i < 20; i++)

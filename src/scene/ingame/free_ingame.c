@@ -30,4 +30,5 @@ void free_ingame(game_t *game)
     free(data->background_texture);
     free(data);
     free(game->scene);
+    game->scene = NULL;
 }

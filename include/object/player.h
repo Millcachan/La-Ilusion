@@ -31,7 +31,7 @@ struct player_s {
 };
 
 
-void player_update(player_t *player, sfTexture **textures);
+bool player_update(player_t *player, game_t *game);
 void player_run(player_t *player, sfTexture **textures);
 void player_jump(player_t *player, sfTexture **textures);
 void player_slide(player_t *player, sfTexture **textures);

@@ -42,7 +42,7 @@ struct scene_ingame_s {
     sfSprite **background;
     sfTexture **background_texture;
 
-    // Chrono
+    // Chrono:
     float time;
     sfText *timer_text;
     sfFont *timer_font;
