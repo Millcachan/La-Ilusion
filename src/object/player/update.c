@@ -8,6 +8,7 @@
 
 #include "object/player.h"
 #include "macro.h"
+#include "sound.h"
 #include <SFML/Graphics.h>
 #include <stdbool.h>
 
@@ -34,18 +35,23 @@ bool player_update(player_t *player, game_t *game)
 
     if (is_out_of_bounds(position)) {
         change_scene(game, ST_DEATH);
+        change_music(game, DEAD);
         return false;  // signal update function to stop updating
     }
 
     // Update the player's acceleration
-    if (player->state != PS_JUMP && sfKeyboard_isKeyPressed(sfKeySpace))
+    if (player->state != PS_JUMP && sfKeyboard_isKeyPressed(sfKeySpace)) {
+        change_music(game, JUMP);
         player_jump(player, data->player_textures);
+    }
 
     // Handle sliding
     bool slide_key_pressed = sfKeyboard_isKeyPressed(sfKeyC);
 
-    if (player->state == PS_NORMAL && slide_key_pressed)
+    if (player->state == PS_NORMAL && slide_key_pressed) {
+        change_music(game, SLIDE);
         player_slide(player, data->player_textures);
+    }
     if (player->state == PS_SLIDE && !slide_key_pressed)
         player_run(player, data->player_textures);
 
