@@ -53,7 +53,38 @@ static sfTexture *load_background_texture(int index)
     return texture;
 }
 
-void load_ingame(game_t *game)
+static void load_fade(scene_death_t *data)
+{
+    data->fade = sfRectangleShape_create();
+    sfRectangleShape_setFillColor(data->fade, (sfColor){0, 0, 0, 130});
+    sfRectangleShape_setSize(data->fade, (sfVector2f){WINDOW_WIDTH, WINDOW_HEIGHT});
+    sfRectangleShape_setPosition(data->fade, (sfVector2f){0, 0});
+}
+
+static void load_text(scene_death_t *data, float score)
+{
+    data->font = sfFont_createFromFile("assets/fonts/FutureMillennium.ttf");
+    if (!data->font) {
+        fprintf(stderr, "Error: Failed to load font\n");
+        exit(ERROR);
+    }
+    data->text_death = sfText_create();
+    sfText_setString(data->text_death, "You died");
+    sfText_setFont(data->text_death, data->font);
+    sfText_setCharacterSize(data->text_death, 20);
+    sfText_setPosition(data->text_death, (sfVector2f){WINDOW_WIDTH / 2 - 50, WINDOW_HEIGHT / 2 - 100});
+    data->text_score = sfText_create();
+
+    char score_str[16];
+    snprintf(score_str, sizeof(score_str), "Score : %d", (int)(score * 100));
+    sfText_setString(data->text_score, score_str);
+    sfText_setFont(data->text_score, data->font);
+    sfText_setCharacterSize(data->text_score, 15);
+    sfText_setPosition(data->text_score, (sfVector2f){WINDOW_WIDTH / 2 - 40, WINDOW_HEIGHT / 2});
+}
+
+
+void load_death(game_t *game)
 {
     if (!game)
         return;
@@ -61,12 +92,11 @@ void load_ingame(game_t *game)
     if (!game->scene)
         game->scene = malloc(sizeof(scene_t));
 
-    game->scene->data = malloc(sizeof(scene_ingame_t));
+    game->scene->data = malloc(sizeof(scene_death_t));
 
-    scene_ingame_t *data = game->scene->data;
+    scene_death_t *data = game->scene->data;
     data->background = malloc(6 * sizeof(sfSprite *));
     data->background_texture = malloc(6 * sizeof(sfTexture *));
-    data->player_textures = malloc(3 * sizeof(sfTexture *));
 
     // Background Setup:
     for (int i = 0; i < 5; i++) {
@@ -78,19 +108,6 @@ void load_ingame(game_t *game)
     data->background[5] = NULL;
     data->background_texture[5] = NULL;
 
-    // Player Setup:
-    data->player_textures[PS_NORMAL] = load_texture("assets/player/player.png");
-    data->player_textures[PS_JUMP] = load_texture("assets/player/jump.png");
-    data->player_textures[PS_SLIDE] = load_texture("assets/player/slide.png");
-
-    data->player = player_create();
-    player_update_texture(data->player, data->player_textures);
-
-    data->time = 0;
-    data->timer_font = sfFont_createFromFile("assets/fonts/FutureMillennium.ttf");
-    data->timer_text = sfText_create();
-    sfText_setFont(data->timer_text, data->timer_font);
-    sfText_setCharacterSize(data->timer_text, 30);
-    sfText_setFillColor(data->timer_text, sfBlack);
-    sfText_setPosition(data->timer_text, (sfVector2f){5, 5});
+    load_fade(data);
+    load_text(data, game->score);
 }

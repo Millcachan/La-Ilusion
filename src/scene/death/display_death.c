@@ -10,16 +10,16 @@
 #include "object/player.h"
 
 
-void display_ingame(game_t *game)
+void display_death(game_t *game)
 {
     if (!game)
         return;
 
-    scene_ingame_t *data = game->scene->data;
+    scene_death_t *data = game->scene->data;
 
     for (int i = 0; data->background[i]; i++)
         SPRITE_DRAW(game->screen.window, data->background[i], NULL);
-    player_display(game, data->player);
-
-    sfRenderWindow_drawText(game->screen.window, data->timer_text, NULL);
+    TEXT_DRAW(game->screen.window, data->text_death, NULL);
+    TEXT_DRAW(game->screen.window, data->text_score, NULL);
+    RECTANGLE_DRAW(game->screen.window, data->fade, NULL);
 }
