@@ -17,11 +17,13 @@ void free_menu(game_t *game)
         return;
     sfTexture_destroy(data->background_texture);
     sfSprite_destroy(data->background);
+    sfSprite_destroy(data->button[0]);
+    sfSprite_destroy(data->button[1]);
     sfTexture_destroy(data->button_texture);
-    sfSprite_destroy(data->button);
     sfText_destroy(data->text[0]);
     sfText_destroy(data->text[1]);
     sfFont_destroy(data->font);
+    free(data->button);
     free(data->text);
     free(data);
 }

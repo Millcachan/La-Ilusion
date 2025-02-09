@@ -35,7 +35,7 @@ int game_mainloop(void)
     game_t *game = init_game(get_game());
     float seconds;
 
-    change_scene(game, ST_INGAME);
+    change_scene(game, ST_MAIN_MENU);
     while (IS_OPEN(game->screen.window)) {
         seconds = get_time(game);
         while (POLL_EVENT(game->screen.window, &game->screen.event)) {

@@ -47,7 +47,8 @@ void load_menu(game_t *game)
     if (!game->scene)
         game->scene = malloc(sizeof(scene_t));
 
-    game->scene->data = malloc(sizeof(scene_ingame_t));
+    game->scene->data = malloc(sizeof(scene_menu_t));
+
     scene_menu_t *data = game->scene->data;
 
     // Background Setup:
@@ -57,16 +58,26 @@ void load_menu(game_t *game)
     scale_image_to_window(data->background, game->screen.window);
 
     // Button Setup:
-    data->button_texture = load_texture("assets/menu/");
-    data->button;
+    data->button_texture = load_texture("assets/button/button.png");
+    data->button = malloc(2 * sizeof(sfText *));
+    data->button[0] = sfSprite_create();
+    data->button[1] = sfSprite_create();
+    sfSprite_setTexture(data->button[0], data->button_texture, sfTrue);
+    sfSprite_setTexture(data->button[1], data->button_texture, sfTrue);
+    sfSprite_setPosition(data->button[0], (sfVector2f){23, 32});
+    sfSprite_setPosition(data->button[1], (sfVector2f){23, 64});
+
+    // Text Setup:
     data->text = malloc(2 * sizeof(sfText *));
     data->text[0] = sfText_create();
     data->text[1] = sfText_create();
-    data->font = sfFont_createFromFile("assets/font/FutureMillenium.ttf");
+    data->font = sfFont_createFromFile("assets/font/FutureMillennium.ttf");
     sfText_setFont(data->text[0], data->font);
     sfText_setFont(data->text[1], data->font);
     sfText_setCharacterSize(data->text[0], 50);
     sfText_setCharacterSize(data->text[1], 50);
     sfText_setString(data->text[0], "Start");
     sfText_setString(data->text[1], "Quit");
+    sfText_setPosition(data->text[0], (sfVector2f){25, 34});
+    sfText_setPosition(data->text[1], (sfVector2f){25, 66});
 }
