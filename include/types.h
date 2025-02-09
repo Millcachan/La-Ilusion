@@ -35,7 +35,7 @@ typedef struct scene_menu_s scene_menu_t;
 typedef enum {
     ST_NONE,
     ST_MAIN_MENU,
-    ST_INGAME
+    ST_INGAME,
     ST_DEATH
 } scene_type_t;
 
