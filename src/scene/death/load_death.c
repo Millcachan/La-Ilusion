@@ -53,6 +53,34 @@ static sfTexture *load_background_texture(int index)
     return texture;
 }
 
+static void load_fade(scene_death_t *data)
+{
+    data->fade = sfRectangleShape_create();
+    sfRectangleShape_setFillColor(data->fade, (sfColor){0, 0, 0, 130});
+    sfRectangleShape_setSize(data->fade, (sfVector2f){WINDOW_WIDTH, WINDOW_HEIGHT});
+    sfRectangleShape_setPosition(data->fade, (sfVector2f){0, 0});
+}
+
+static void load_text(scene_death_t *data)
+{
+    data->font = sfFont_createFromFile("assets/font/FutureMillennium.ttf");
+    if (!data->font) {
+        fprintf(stderr, "Error: Failed to load font\n");
+        exit(ERROR);
+    }
+    data->text_death = sfText_create();
+    sfText_setString(data->text_death, "You died");
+    sfText_setFont(data->text_death, data->font);
+    sfText_setCharacterSize(data->text_death, 20);
+    sfText_setPosition(data->text_death, (sfVector2f){WINDOW_WIDTH / 2 - 60, WINDOW_HEIGHT / 2 - 100});
+    data->text_score = sfText_create();
+    sfText_setString(data->text_score, "Score: 0");
+    sfText_setFont(data->text_score, data->font);
+    sfText_setCharacterSize(data->text_score, 15);
+    sfText_setPosition(data->text_score, (sfVector2f){WINDOW_WIDTH / 2 - 30, WINDOW_HEIGHT / 2 + 100});
+}
+
+
 void load_death(game_t *game)
 {
     if (!game)
@@ -77,8 +105,6 @@ void load_death(game_t *game)
     data->background[5] = NULL;
     data->background_texture[5] = NULL;
 
-    data->fade = sfRectangleShape_create();
-    sfRectangleShape_setFillColor(data->fade, (sfColor){0, 0, 0, 130});
-    sfRectangleShape_setSize(data->fade, (sfVector2f){WINDOW_WIDTH, WINDOW_HEIGHT});
-    sfRectangleShape_setPosition(data->fade, (sfVector2f){0, 0});
+    load_fade(data);
+    load_text(data);
 }

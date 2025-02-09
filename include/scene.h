@@ -49,6 +49,10 @@ struct scene_death_s {
     // Background:
     sfSprite **background;
     sfTexture **background_texture;
+    sfFont *font;
+    sfText *text_death;
+    sfText *text_score;
+
     sfRectangleShape *fade;
 };
 

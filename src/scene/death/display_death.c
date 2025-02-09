@@ -19,5 +19,7 @@ void display_death(game_t *game)
 
     for (int i = 0; data->background[i]; i++)
         SPRITE_DRAW(game->screen.window, data->background[i], NULL);
+    TEXT_DRAW(game->screen.window, data->text_death, NULL);
+    TEXT_DRAW(game->screen.window, data->text_score, NULL);
     RECTANGLE_DRAW(game->screen.window, data->fade, NULL);
 }
