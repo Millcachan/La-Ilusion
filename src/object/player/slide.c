@@ -8,8 +8,8 @@
 #include "object/player.h"
 
 
-void player_slide(player_t *player)
+void player_slide(player_t *player, sfTexture **textures)
 {
     player->state = PS_SLIDE;
-    // TODO: change the sprite to sliding animation
+    player_update_texture(player, textures);
 }

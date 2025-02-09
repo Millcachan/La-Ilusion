@@ -35,7 +35,10 @@ static void incr_slide_anim(sfSprite *sprite)
 {
     sfIntRect texture_rect = sfSprite_getTextureRect(sprite);
 
-    texture_rect.left = (texture_rect.left + 32) % 256;
+    if (texture_rect.left >= 64)
+        return;
+
+    texture_rect.left += 32;
 
     sfSprite_setTextureRect(sprite, texture_rect);
 }
