@@ -12,4 +12,16 @@ void free_menu(game_t *game)
 {
     if (!game)
         return;
+    scene_menu_t *data = game->scene->data;
+    if (!data)
+        return;
+    sfTexture_destroy(data->background_texture);
+    sfSprite_destroy(data->background);
+    sfTexture_destroy(data->button_texture);
+    sfSprite_destroy(data->button);
+    sfText_destroy(data->text[0]);
+    sfText_destroy(data->text[1]);
+    sfFont_destroy(data->font);
+    free(data->text);
+    free(data);
 }

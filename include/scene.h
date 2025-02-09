@@ -45,6 +45,16 @@ struct scene_ingame_s {
     sfTexture **background_texture;
 };
 
+struct scene_menu_s {
+    // Background:
+    sfSprite *background;
+    sfTexture *background_texture;
+    // Button:
+    sfSprite *button;
+    sfTexture *button_texture;
+    sfText **text;
+    sfFont **font;
+};
 
 void load_ingame(game_t *game);
 void update_ingame(game_t *game);

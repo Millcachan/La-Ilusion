@@ -22,7 +22,7 @@ typedef struct musics_s musics_t;        // defined in game.h (l.36)
 typedef struct scene_s scene_t;          // defined in scene.h (l.24)
 typedef struct scene_ingame_s scene_ingame_t;          // defined in scene.h (l.24)
 typedef struct player_s player_t;        // defined in player.h (l.29)
-
+typedef struct scene_menu_s scene_menu_t;
 
 ///////////////////////////////////////////
 //                                       //
@@ -33,7 +33,7 @@ typedef struct player_s player_t;        // defined in player.h (l.29)
 typedef enum {
     ST_NONE,
 
-    // ST_MAIN_MENU,
+    ST_MAIN_MENU,
     ST_INGAME
 } scene_type_t;
 

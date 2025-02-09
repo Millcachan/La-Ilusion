@@ -63,6 +63,5 @@ game_t *init_game(game_t *game)
     game->speed = 1;
     game->current_music = game->musics.music[MENU];
     change_scene(game, ST_NONE);
-    sfMusic_play(game->current_music);
     return game;
 }
