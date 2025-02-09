@@ -10,7 +10,7 @@
 
 void display_menu(game_t *game)
 {
-    if (game)
+    if (!game)
         return;
 
     scene_menu_t *data = game->scene->data;
@@ -20,4 +20,5 @@ void display_menu(game_t *game)
     SPRITE_DRAW(game->screen.window, data->button[1], NULL);
     TEXT_DRAW(game->screen.window, data->text[0], NULL);
     TEXT_DRAW(game->screen.window, data->text[1], NULL);
+    TEXT_DRAW(game->screen.window, data->text[2], NULL);
 }

@@ -64,20 +64,28 @@ void load_menu(game_t *game)
     data->button[1] = sfSprite_create();
     sfSprite_setTexture(data->button[0], data->button_texture, sfTrue);
     sfSprite_setTexture(data->button[1], data->button_texture, sfTrue);
-    sfSprite_setPosition(data->button[0], (sfVector2f){23, 32});
-    sfSprite_setPosition(data->button[1], (sfVector2f){23, 64});
+    sfSprite_setPosition(data->button[0], (sfVector2f){295, 220});
+    sfSprite_setPosition(data->button[1], (sfVector2f){295, 300});
 
     // Text Setup:
-    data->text = malloc(2 * sizeof(sfText *));
+    data->text = malloc(3 * sizeof(sfText *));
     data->text[0] = sfText_create();
     data->text[1] = sfText_create();
+    data->text[2] = sfText_create();
     data->font = sfFont_createFromFile("assets/font/FutureMillennium.ttf");
     sfText_setFont(data->text[0], data->font);
     sfText_setFont(data->text[1], data->font);
-    sfText_setCharacterSize(data->text[0], 50);
-    sfText_setCharacterSize(data->text[1], 50);
+    sfText_setFont(data->text[2], data->font);
+    sfText_setCharacterSize(data->text[0], 40);
+    sfText_setCharacterSize(data->text[1], 40);
+    sfText_setCharacterSize(data->text[2], 80);
     sfText_setString(data->text[0], "Start");
     sfText_setString(data->text[1], "Quit");
-    sfText_setPosition(data->text[0], (sfVector2f){25, 34});
-    sfText_setPosition(data->text[1], (sfVector2f){25, 66});
+    sfText_setString(data->text[2], "La Ilusion");
+    sfText_setPosition(data->text[0], (sfVector2f){300, 226});
+    sfText_setPosition(data->text[1], (sfVector2f){319, 306});
+    sfText_setPosition(data->text[2], (sfVector2f){135, 60});
+    sfText_setOutlineColor(data->text[2], sfBlack);
+    sfText_setOutlineThickness(data->text[2], 5);
+    sfText_setFillColor(data->text[2], sfWhite);
 }
